@@ -7,7 +7,7 @@ function App() {
       <h1>Weather App</h1>
       <div>
         <label>
-          Add Location <input type="text" value="Vancouver" />
+          Add Location <input type="text" value="Paris" />
         </label>
         <button>Search</button>
       </div>
