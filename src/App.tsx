@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
   const [locationSearch, setLocationSearch] = useState('Paris');
+  const [locations, setLocations] = useState(['Belfast', 'Dublin'])
   return (
     <div>
       <h1>Weather App</h1>
@@ -22,8 +23,9 @@ function App() {
             </tr>
             </thead>
             <tbody>
-              <tr><td>Belfast</td></tr>
-              <tr><td>New York</td></tr>
+              {locations.map((location, index) => 
+                <tr key={index}><td>{location}</td></tr>
+              )}
             </tbody>
         </table>
       </div>
