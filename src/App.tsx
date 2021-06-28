@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   const [locationSearch, setLocationSearch] = useState('Paris');
-  const [locations, setLocations] = useState(['Belfast', 'Dublin'])
+  const [locations, setLocations] = useState<string[]>([]); //an empty array cannot be inferred so specifying generic parameter
   const disableSearch = locationSearch.trim() === '';
   const addLocation = () => {
     setLocations([locationSearch, ...locations]); 
