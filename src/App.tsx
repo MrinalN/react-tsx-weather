@@ -4,6 +4,11 @@ import './App.css';
 function App() {
   const [locationSearch, setLocationSearch] = useState('Paris');
   const [locations, setLocations] = useState(['Belfast', 'Dublin'])
+  const disableSearch = locationSearch.trim() === '';
+  const addLocation = () => {
+    setLocations([locationSearch, ...locations]); 
+    setLocationSearch('');
+  }
   return (
     <div>
       <h1>Weather App</h1>
@@ -11,7 +16,7 @@ function App() {
         <label>
           Add Location <input type="text" value={locationSearch} onChange={e => setLocationSearch(e.target.value)}/>
         </label>
-        <button>Search</button>
+        <button onClick={addLocation} disabled={disableSearch}>Search</button>
       </div>
 
       <div>
