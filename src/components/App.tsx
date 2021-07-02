@@ -1,15 +1,22 @@
 import React, {useState} from 'react';
 import { LocationSearch } from './LocationSearch';
 import { LocationTable } from './LocationTable';
-
-import './App.css';
 import { WeatherLocation } from '../model/Weather';
 import { searchLocation } from '../services/WeatherService';
+
+import './App.css';
+
 
 function App() {
   const [locations, setLocations] = useState<WeatherLocation[]>([]); //an empty array cannot be inferred so specifying generic parameter
   const [error, setError] = useState('');
   const [warning, setWarning] = useState('');
+
+  const resetAlerts = () => {
+    setError('');
+    setWarning('');
+  }
+
   const addLocation = async (term: string) => {
     resetAlerts();
     const location = await searchLocation(term);
