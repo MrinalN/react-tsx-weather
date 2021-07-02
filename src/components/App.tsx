@@ -4,12 +4,24 @@ import { LocationTable } from './LocationTable';
 
 import './App.css';
 import { WeatherLocation } from '../model/Weather';
+import { searchLocation } from '../services/WeatherService';
 
 function App() {
   const [locations, setLocations] = useState<WeatherLocation[]>([]); //an empty array cannot be inferred so specifying generic parameter
   const [error, setError] = useState('');
   const [warning, setWarning] = useState('');
-  const addLocation = (location: string) => setLocations([location, ...locations])
+  const addLocation = async (term: string) => {
+    resetAlerts();
+    const location = await searchLocation(term);
+
+    if (!location) {
+      setError(`No location found called '${term}'`);
+    } else if (locations.find(item => item.id === location.id)) {
+      setWarning(`Location '${term}' is already in the list.`)
+    } else {
+      setLocations([location, ...locations]);
+    }
+  }
   return (
     <div className="container">
       <h1>Weather App</h1>  
