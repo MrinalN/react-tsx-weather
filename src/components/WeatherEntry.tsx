@@ -23,7 +23,7 @@ export const WeatherEntry: FC<WeatherEntryProps> = ({weather}) =>
       Humiditiy: {weather.main.humidity}%
     </div>
     {weather.weather.map(condition => 
-      <div>
+      <div key={condition.id}>
         <img src={getIconUrl(condition.icon)} alt={condition.main}/> {condition.main} {condition.description}
       </div>
       )}
