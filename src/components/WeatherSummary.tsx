@@ -5,7 +5,7 @@ import React, {FC, useEffect, useState} from 'react';
 import { WeatherEntry } from './WeatherEntry';
 import { WeatherLocation } from '../model/Weather';
 import { Weather } from '../model/Weather';
-import {readWeather} from '../services/WeatherService';
+import {readForcast, readWeather} from '../services/WeatherService';
 
 
 interface WeatherSummaryProps {
@@ -14,11 +14,19 @@ interface WeatherSummaryProps {
 
 export const WeatherSummary: FC<WeatherSummaryProps> = ({location}) => {
   const [weather, setWeather] = useState<Weather | null>(null);
+  const [forecast, setForecast] = useState<Weather[] | null>(null);
 
   useEffect(() => {
-    if (location) {
-      readWeather(location.id).then(weather => setWeather(weather));
-    }
+    (async function () {
+      if (location) {
+        const [weather, forecast] = await Promise.all([
+          readWeather(location.id),
+          readForcast(location.id)
+        ]) 
+        setWeather(weather);
+        setForecast(forecast);
+      }
+    })();
   }, [location]);
 
   if (!location || !weather) return null;
