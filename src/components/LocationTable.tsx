@@ -1,7 +1,8 @@
 import React, {FC} from "react";
+import { WeatherLocation } from "../model/Weather";
 
 interface LocationTableProps {
-  locations: string[];
+  locations: WeatherLocation[];
 }
 
 export const LocationTable: FC<LocationTableProps> = ({locations}) =>
