@@ -11,6 +11,7 @@ function App() {
   const [locations, setLocations] = useState<WeatherLocation[]>([]); //an empty array cannot be inferred so specifying generic parameter
   const [error, setError] = useState('');
   const [warning, setWarning] = useState('');
+  const [currentLocation, setCurrentLocation] = useState<WeatherLocation | null> (null);
 
   const resetAlerts = () => {
     setError('');
@@ -43,7 +44,9 @@ function App() {
           ? <div className={`alert alert-warning`}>{warning}</div>
           : null
       }
-      <LocationTable locations={locations}/>
+      <LocationTable locations={locations}
+                      current={currentLocation}
+                      onSelect={location => setCurrentLocation(location)}/>
     </div>
   );
 }
