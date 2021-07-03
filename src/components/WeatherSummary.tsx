@@ -7,6 +7,7 @@ import { WeatherLocation } from '../model/Weather';
 import { Weather } from '../model/Weather';
 import {readForcast, readWeather} from '../services/WeatherService';
 
+import './WeatherSummary.scss';
 
 interface WeatherSummaryProps {
   location: WeatherLocation | null;
@@ -39,7 +40,7 @@ export const WeatherSummary: FC<WeatherSummaryProps> = ({location}) => {
 
       <h2>Forecast</h2>
       <div>
-        <ol>
+        <ol style={({whiteSpace: 'nowrap'})}>
           {forecast.map(timePoint => 
             <li key={timePoint.dt}>
               <WeatherEntry weather={timePoint} />
