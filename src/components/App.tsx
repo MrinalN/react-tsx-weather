@@ -5,6 +5,7 @@ import { WeatherLocation } from '../model/Weather';
 import { searchLocation } from '../services/WeatherService';
 
 import './App.css';
+import { WeatherSummary } from './WeatherSummary';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
       <LocationTable locations={locations}
                       current={currentLocation}
                       onSelect={location => setCurrentLocation(location)}/>
+      <WeatherSummary location={currentLocation} />
     </div>
   );
 }
