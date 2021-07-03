@@ -40,7 +40,7 @@ function App() {
       }
       {
         warning
-          ? <div> className={`alert alert-warning`}>{warning}</div>
+          ? <div className={`alert alert-warning`}>{warning}</div>
           : null
       }
       <LocationTable locations={locations}/>
